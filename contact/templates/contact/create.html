@@ -11,12 +11,16 @@
         enctype="multipart/form-data"
         >
         {% csrf_token %}
-        <div class="form-content">
-            <div class="form-group">
-            <label for="id_first_name">LABEL</label>
-            <input type="text" name="first_name" maxlength="255" id="id_first_name">
+
+        {% for field in form %}
+            <div class="form-content">
+                <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+                </div>
             </div>
-        </div>
+        {% endfor %}
 
         <div class="form-content">
             <div class="form-group">
